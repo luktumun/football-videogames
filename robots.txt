@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
-Sitemap:https://www.dropbox.com/s/7i95e3e73uf16mc/sitemap.xml?raw=1
-Sitemap: https://torrentfiles.netlify.app/sitemap.xml
+Sitemap:https://www.dropbox.com/s/dp4bycx39owfj15/sitemap.xml?raw=1
+Sitemap: https://football-videogames.netlify.app/sitemap.xml
