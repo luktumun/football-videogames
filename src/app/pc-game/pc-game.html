@@ -1,0 +1,76 @@
+@if (loading()) {
+  <div class="loading">Loading PC games...</div>
+}
+
+@if (!loading() && error()) {
+  <div class="error">{{ error() }}</div>
+}
+
+@if (!loading() && !error()) {
+  <div class="game-list">
+    @for (game of games(); track game.id) {
+      <div class="game-card" [attr.data-testid]="'game-card-' + game.id">
+        <div class="card-content">
+          <h2>{{ game.title }}</h2>
+
+          <!-- Video preview and player -->
+          <div class="video-wrapper" (click)="selectGame(game)">
+            <div class="game-preview">
+              <img
+                [src]="getThumbnail(game)"
+                alt="Game Preview"
+                class="thumbnail"
+                loading="lazy"
+              />
+              <div class="play-button">▶</div>
+            </div>
+
+            @if (selectedGameId() === game.id) {
+              <!-- YouTube Player container for JS API -->
+              <div
+                id="yt-player-container"
+                class="yt-player"
+                [attr.data-testid]="'youtube-player-' + game.id"
+              ></div>
+            }
+          </div>
+
+          <!-- Description block -->
+          @if (game.description) {
+            <div class="description">
+              <h3>Description:</h3>
+              <ul>
+                @for (line of getDescriptionLines(game.description); track line) {
+                  <li>{{ line }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Download links -->
+          @if (game.url1) {
+            <div class="downloads">
+              <a
+                [href]="transformDropboxUrl(game.url1)"
+                target="_blank"
+                rel="noopener"
+                download
+                class="download-link"
+              >
+                📥 Download from Dropbox
+              </a>
+              <a
+                [href]="game.url1"
+                target="_blank"
+                rel="noopener"
+                class="magnet-link"
+              >
+                🧲 Open Magnet Link
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,83 @@
+@if (loading()) {
+  <div class="loading">Loading sport videos...</div>
+}
+
+@if (!loading() && error()) {
+  <div class="error">{{ error() }}</div>
+}
+
+@if (!loading() && !error()) {
+  <div class="video-list">
+    @for (video of videos(); track video.id) {
+      <div class="video-card" [attr.data-testid]="'video-card-' + video.id">
+        <div class="card-content">
+          <h2>{{ video.soccermatch }}</h2>
+
+          <!-- Video preview and player -->
+          <div class="video-wrapper" (click)="loadVideo(video)">
+            <div class="video-preview">
+              <img
+                [src]="getThumbnail(video)"
+                alt="Sport Video Preview"
+                class="thumbnail"
+                loading="lazy"
+              />
+              <div class="play-button">▶</div>
+            </div>
+
+            @if (selectedVideoId() === video.id && selectedSafeUrl()) {
+              <div
+                class="yt-player"
+                [attr.data-testid]="'youtube-player-' + video.id"
+              >
+                <iframe
+                  [src]="selectedSafeUrl()"
+                  width="500"
+                  height="220"
+                  frameborder="0"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            }
+          </div>
+
+          <!-- Description block -->
+          @if (video.description) {
+            <div class="description">
+              <h3>Description:</h3>
+              <ul>
+                @for (line of getDescriptionLines(video.description); track line) {
+                  <li>{{ line }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Download links -->
+          @if (video.torrentdownloadlink) {
+            <div class="downloads">
+              <a
+                [href]="transformDropboxUrl(video.torrentdownloadlink)"
+                target="_blank"
+                rel="noopener"
+                download
+                class="download-link"
+              >
+                📥 Download from Dropbox
+              </a>
+              <a
+                [href]="video.torrentdownloadlink"
+                target="_blank"
+                rel="noopener"
+                class="magnet-link"
+              >
+                🧲 Open Magnet Link
+              </a>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}
