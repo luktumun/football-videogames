@@ -1,171 +1,128 @@
-/* ✅ Reset and base layout */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
-/* ✅ Video List spans full width */
+/* Layout Containers */
 .video-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   padding: 2rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  margin: 0 auto;
+  max-width: 1440px;
 }
 
-.video-list::-webkit-scrollbar {
-  display: none;
-}
-
-/* ✅ Video Card full width */
 .video-card {
-  width: 100%;
-  background-color: #f9f9f9;
-  border: 1px solid #f9f9f9;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
-  overflow: visible;
-}
-
-/* ✅ Inner content */
-.video-card > .card-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* ✅ Title */
-.card-content h2 {
-  font-size: 1.6rem;
-  color: #00bcd4;
-  word-wrap: break-word;
-}
-
-/* ✅ Video Preview */
-.video-wrapper {
-  width: 100%;
-  height: 220px;
-  position: relative;
+  background: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px #f0f0f0;
   overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.02);
+}
+
+/* Card Content */
+.card-content {
+  padding: 1.5rem;
+  color: #372b2b;
+}
+
+.card-content h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #372b2b;;
+}
+
+/* Video Preview */
+.video-wrapper {
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
-.video-wrapper,
-.yt-player {
-  width: 500px;
-  height: 220px;
-  max-width: 100%;
+.video-preview {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* ✅ YouTube Player */
-.yt-player {
-  width: 100%;
-  height: 220px;
-}
-
-/* ✅ Thumbnail */
 .thumbnail {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
 }
 
-/* ✅ Play Button */
 .play-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
   padding: 0.5rem 1rem;
-  pointer-events: none;
+  border-radius: 50%;
 }
 
-/* ✅ Description */
+/* Description */
+.description {
+  margin-top: 1rem;
+}
+
 .description h3 {
-  font-size: 1.2rem;
-  color: #ff9800;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #ccc;
 }
 
 .description ul {
-  padding-left: 1.5rem;
+  padding-left: 1.2rem;
+  list-style-type: disc;
 }
 
 .description li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
-/* ✅ Downloads */
+/* Download Links */
 .downloads {
+  margin-top: 1rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .download-link,
 .magnet-link {
+  color: #00bcd4;
   text-decoration: none;
   font-weight: bold;
-  color: #4caf50;
-  background-color: #222;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
 }
 
 .download-link:hover,
 .magnet-link:hover {
-  background-color: #333;
+  text-decoration: underline;
 }
 
-/* ✅ Mobile Responsiveness */
-@media (max-width: 600px) {
-  .video-card {
-    padding: 1rem;
-  }
+/* Loading and Error States */
+.loading,
+.error,
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #ccc;
+}
 
-  .video-wrapper,
-  .yt-player {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
+.loading img {
+  margin-bottom: 1rem;
+}
 
-  .play-button {
-    font-size: 2rem;
-    padding: 0.4rem 0.8rem;
-  }
-
-  .card-content h2 {
-    font-size: 1.3rem;
-  }
-
-  .description h3 {
-    font-size: 1rem;
-  }
-
-  .download-link,
-  .magnet-link {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-  }
+/* Responsive iframe */
+iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border: none;
+  margin-top: 1rem;
+  border-radius: 8px;
 }

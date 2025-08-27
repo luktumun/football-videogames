@@ -2,14 +2,14 @@
   "name": "pcgame-sportvideo",
   "version": "0.0.0",
   "type": "module",
-
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:pcgame-sportvideo": "node dist/pcgame-sportvideo/server/server.mjs"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "prettier": {
     "printWidth": 100,
@@ -46,6 +46,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "cypress": "^15.0.0",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -55,5 +56,4 @@
     "ts-node": "^10.9.2",
     "typescript": "~5.9.2"
   }
- 
 }

@@ -12,15 +12,15 @@ import { VideoService } from '../services/video.service';
   styleUrls: ['./sport-video.css']
 })
 export class SportVideoComponent implements OnInit {
-  videos = signal<Video[]>([]);
-  loading = signal(true);
-  error = signal('');
-  selectedVideoId = signal<string | null>(null);
-  selectedSafeUrl = signal<SafeResourceUrl | null>(null);
+  readonly videos = signal<Video[]>([]);
+  readonly loading = signal(true);
+  readonly error = signal('');
+  readonly selectedVideoId = signal<number | null>(null);
+  readonly selectedSafeUrl = signal<SafeResourceUrl | null>(null);
 
   constructor(
-    private videoService: VideoService,
-    private sanitizer: DomSanitizer
+    private readonly videoService: VideoService,
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -45,6 +45,9 @@ export class SportVideoComponent implements OnInit {
         this.loading.set(false);
       }
     });
+  }
+  selectVideo(video: Video): void {
+    this.selectedVideoId.set(video.id);
   }
 
   loadVideo(video: Video): void {

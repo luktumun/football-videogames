@@ -1,7 +1,7 @@
 export type SourceType = 'youtube' | 'dropbox' | 'magnet' | 'unknown';
 
 export interface Game {
-  id: string;
+  id: number;
   title: string;
   url: string;
   url1?: string;

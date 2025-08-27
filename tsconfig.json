@@ -3,6 +3,8 @@
 {
   "compileOnSave": false,
  "compilerOptions": {
+  "composite": true,
+
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -15,8 +17,12 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "types": ["cypress"]
+
   },
+  "include": ["cypress/**/*.ts"],
+
   "ts-node": {
     "esm": true
   },

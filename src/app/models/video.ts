@@ -1,7 +1,7 @@
 export type SourceType = 'youtube' | 'dropbox' | 'magnet' | 'unknown';
 
 export interface Video {
-  id: string;
+  id: number;
   soccermatch: string;
   videourl: string;
   description?: string;
