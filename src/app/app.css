@@ -1,0 +1,167 @@
+/* Reset and base layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* ✅ Remove horizontal scroll */
+  overflow-y: auto;   /* ✅ Allow full-page vertical scroll */
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* Remove fixed height and overflow from .content */
+.content {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header layout */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  color: #5aa4d8;
+  box-shadow: 0 2px 4px rgba(94, 166, 201, 0.2);
+}
+
+.logo {
+  height: 160px;
+  width: 230px;
+  object-fit: contain;
+}
+
+/* Navigation buttons */
+.nav-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background-color: #5aa4d8;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: #b98d8d;
+}
+
+/* Optional navbar block */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #e0e0ff;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: #2563eb;
+}
+
+/* Host layout */
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Footer layout */
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 2rem;
+}
+
+.footer a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Scroll button */
+.scroll-btn {
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  border: none;
+  background-color: #444;
+  color: white;
+  border-radius: 50%;
+  margin: 0.5rem;
+  touch-action: manipulation;
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: auto;
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 1rem;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .content {
+    height: calc(100vh - 180px); /* Adjust for smaller header/footer */
+    padding: 0.5rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

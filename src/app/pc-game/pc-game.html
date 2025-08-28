@@ -1,0 +1,92 @@
+<!-- Loading State -->
+<div *ngIf="loading()" class="loading" role="status" aria-live="polite">
+  <img src="/logo.png" alt="Loading logo" width="100" />
+  Loading PC games...
+</div>
+
+<!-- Error State -->
+<div *ngIf="!loading() && error()" class="error" role="alert" data-testid="game-load-error">
+  {{ error() }}
+</div>
+
+<!-- Content State -->
+<div *ngIf="!loading() && !error()">
+  <div *ngIf="games().length === 0" class="empty-state" data-testid="empty-game-list">
+    No PC games available at the moment.
+  </div>
+
+  <div *ngIf="games().length > 0" class="game-list" role="list">
+    <div
+      *ngFor="let game of games(); trackBy: trackGame"
+      class="game-card"
+      role="listitem"
+      [attr.data-testid]="'game-card-' + game.id"
+    >
+      <div class="card-content">
+        <h2>{{ game.title }}</h2>
+
+        <!-- Video Preview -->
+        <div class="video-wrapper" (click)="togglePlayer(game.id)">
+          <div class="game-preview">
+            <img
+              [attr.data-testid]="'game-thumbnail-' + game.id"
+              [src]="getThumbnail(game)"
+              alt="Preview of {{ game.title }}"
+              class="thumbnail"
+              loading="lazy"
+            />
+            <div class="play-button" aria-hidden="true">▶</div>
+          </div>
+
+          <div
+            *ngIf="isPlayerVisible(game.id)"
+            class="iframe-container"
+            [attr.data-testid]="'youtube-player-' + game.id"
+          >
+            <iframe
+              width="560"
+              height="315"
+              [src]="'https://www.youtube.com/embed/' + extractYoutubeId(game.url) + '?autoplay=1&mute=1'"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div *ngIf="game.description" class="description">
+          <h3>Description:</h3>
+          <ul>
+            <li *ngFor="let line of getDescriptionLines(game.description); trackBy: trackLine">
+              {{ line.text }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Download Links -->
+        <div *ngIf="game.url1" class="downloads">
+          <a
+            [href]="transformDropboxUrl(game.url1)"
+            target="_blank"
+            rel="noopener"
+            download
+            class="download-link"
+            [attr.data-testid]="'dropbox-link-' + game.id"
+          >
+            📥 Download from Dropbox
+          </a>
+          <a
+            [href]="game.url1"
+            target="_blank"
+            rel="noopener"
+            class="magnet-link"
+            [attr.data-testid]="'magnet-link-' + game.id"
+          >
+            🧲 Open Magnet Link
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

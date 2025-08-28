@@ -1,0 +1,97 @@
+<!-- Loading State -->
+@if (loading()) {
+  <div class="loading" role="status" aria-live="polite">
+    <img src="/logo.png" alt="Loading logo" width="100" />
+    Loading sport videos...
+  </div>
+}
+
+<!-- Error State -->
+@if (!loading() && error()) {
+  <div class="error" role="alert">
+    {{ error() }}
+  </div>
+}
+
+<!-- Content State -->
+@if (!loading() && !error()) {
+  @if (videos().length === 0) {
+    <div class="empty-state" data-testid="empty-video-list">
+      No sport videos available at the moment.
+    </div>
+  } @else {
+    <div class="video-list" role="list">
+      @for (video of videos(); track video.id) {
+        <div class="video-card" role="listitem" [attr.data-testid]="'video-card-' + video.id">
+          <div class="card-content">
+            <h2>{{ video.soccermatch }}</h2>
+
+            <!-- Video Preview -->
+            <div class="video-wrapper" (click)="selectVideo(video)">
+              <div class="video-preview">
+                <img
+                  [attr.data-testid]="'video-thumbnail-' + video.id"
+                  [src]="getThumbnail(video)"
+                  alt="Preview of {{ video.soccermatch }}"
+                  class="thumbnail"
+                  loading="lazy"
+                />
+                <div class="play-button" aria-hidden="true">▶</div>
+              </div>
+
+              @if (selectedVideoId() === video.id) {
+                <iframe
+                  width="560"
+                  height="315"
+                  [src]="'https://www.youtube.com/embed/' + extractYoutubeId(video.videourl)"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  [attr.data-testid]="'youtube-player-' + video.id"
+                ></iframe>
+              }
+            </div>
+
+            <!-- Description -->
+            @if (video.description) {
+              <div class="description">
+                <h3>Description:</h3>
+                <ul>
+                  @for (line of getDescriptionLines(video.description); track line) {
+                    <li>{{ line }}</li>
+                  }
+                </ul>
+              </div>
+            }
+
+            <!-- Download Links -->
+            @if (video.torrentdownloadlink) {
+              <div class="downloads">
+                <a
+                  [href]="transformDropboxUrl(video.torrentdownloadlink)"
+                  target="_blank"
+                  rel="noopener"
+                  download
+                  class="download-link"
+                  [attr.data-testid]="'dropbox-link-' + video.id"
+                >
+                  📥 Download from Dropbox
+                </a>
+                <a
+                  [href]="video.torrentdownloadlink"
+                  target="_blank"
+                  rel="noopener"
+                  class="magnet-link"
+                  [attr.data-testid]="'magnet-link-' + video.id"
+                >
+                  🧲 Open Magnet Link
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+}
