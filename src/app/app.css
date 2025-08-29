@@ -8,23 +8,18 @@
 html, body {
   height: 100%;
   width: 100%;
-  overflow-x: hidden; /* ✅ Remove horizontal scroll */
-  overflow-y: auto;   /* ✅ Allow full-page vertical scroll */
+  overflow-x: hidden;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
-}
-
-/* Remove fixed height and overflow from .content */
-.content {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+/* App container layout */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Header layout */
@@ -34,7 +29,7 @@ html, body {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #ffffff;
-  color: #5aa4d8;
+  color: #d69e58;
   box-shadow: 0 2px 4px rgba(94, 166, 201, 0.2);
 }
 
@@ -52,7 +47,7 @@ html, body {
 }
 
 .nav-btn {
-  background-color: #5aa4d8;
+  background-color: #d69e58;
   color: #fff;
   font-weight: 800;
   font-size: 1rem;
@@ -84,50 +79,51 @@ html, body {
 }
 
 .nav-item:hover {
-  color: #2563eb;
+  color: #ffffff;
 }
 
-/* Host layout */
-:host {
+/* Main content layout */
+.content {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  box-shadow: none;
+  border-radius: 0;
+  overflow-y: auto;
 }
 
-/* Footer layout */
+/* Fixed Footer */
 .footer {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #ffffff, #5aa4d8); /* Deep blue gradient */
+  color: #d69e58; /* Soft light text for contrast */
+  text-align: center;
   padding: 1rem;
-  background-color: #ffffff;
-  border-top: 1px solid #e5e7eb;
-  margin-top: 2rem;
+  font-size: 1.2rem;
+  z-index: 1000;
+  box-shadow: 0 -2px 6px rgba(187, 165, 165, 0.1);
 }
 
 .footer a {
-  color: #2563eb;
+  color: #a5f3fc; /* Aqua accent for links */
   text-decoration: none;
   font-weight: 500;
 }
 
 .footer a:hover {
+  color: #ffffff;
   text-decoration: underline;
 }
 
-/* Scroll button */
-.scroll-btn {
-  font-size: 1.5rem;
-  padding: 0.75rem;
-  border: none;
-  background-color: #444;
-  color: white;
-  border-radius: 50%;
-  margin: 0.5rem;
-  touch-action: manipulation;
-}
 
-/* ✅ Mobile responsiveness */
+
+/* Mobile responsiveness */
 @media (max-width: 600px) {
   .app-header {
     flex-direction: column;
@@ -155,13 +151,20 @@ html, body {
   }
 
   .content {
-    height: calc(100vh - 180px); /* Adjust for smaller header/footer */
     padding: 0.5rem;
+    padding-bottom: 7rem; /* Prevent overlap with fixed footer */
   }
-
   .footer {
-    flex-direction: column;
-    gap: 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.75rem;
+    line-height: 1.4;
     text-align: center;
   }
+
+  .footer a {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+
 }

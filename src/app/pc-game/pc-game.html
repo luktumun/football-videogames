@@ -21,35 +21,33 @@
     </div>
   } @else {
     <div class="game-list" role="list">
-      @for (game of games(); track game.id) {
+      @for (game of games(); track game.id ?? $index) {
         <div class="game-card" role="listitem" [attr.data-testid]="'game-card-' + game.id">
           <div class="card-content">
             <h2>{{ game.title }}</h2>
 
-            <!-- Video Preview -->
-            <div class="video-wrapper" (click)="selectGame(game)">
-              <div class="game-preview">
-                <img
-                  [attr.data-testid]="'game-thumbnail-' + game.id"
-                  [src]="getThumbnail(game)"
-                  alt="Preview of {{ game.title }}"
-                  class="thumbnail"
-                  loading="lazy"
-                />
-                <div class="play-button" aria-hidden="true">▶</div>
-              </div>
+
+            <!-- Video Preview or Player -->
+            <div class="video-wrapper">
 
               @if (selectedGameId() === game.id) {
-                <iframe
-                  width="560"
-                  height="315"
-                  [src]="'https://www.youtube.com/embed/' + extractYoutubeId(game.url)"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
+                <youtube-player
+                  [videoId]="extractYoutubeId(game.url) ?? undefined"
+                  [height]="315"
+                  [width]="560"
+                  [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
                   [attr.data-testid]="'youtube-player-' + game.id"
-                ></iframe>
+                ></youtube-player>
+              } @else {
+                <div class="game-preview"  (click)="selectGame(game)">
+                  <img
+                    [src]="getThumbnail(game)"
+                    alt="Preview of {{ game.title }}"
+                    class="thumbnail"
+                    
+                  />
+                  <div class="play-button" aria-hidden="true">▶</div>
+                </div>
               }
             </div>
 

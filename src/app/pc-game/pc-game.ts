@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 import { GameService } from '../services/game.service';
 import { Game } from '../models/game';
 
@@ -6,7 +7,8 @@ import { Game } from '../models/game';
   selector: 'app-pc-game',
   templateUrl: './pc-game.html',
   styleUrls: ['./pc-game.css'],
-  standalone: true
+  standalone: true,
+  imports: [YouTubePlayerModule]
 })
 export class PcGameComponent {
   readonly games = signal<Game[]>([]);
@@ -14,7 +16,9 @@ export class PcGameComponent {
   readonly error = signal<string | null>(null);
   readonly selectedGameId = signal<number | null>(null);
 
-  constructor(private gamesService: GameService) {
+  constructor(
+    private gamesService: GameService,
+  ) {
     this.fetchGames();
   }
 
@@ -33,12 +37,9 @@ export class PcGameComponent {
   }
 
   selectGame(game: Game): void {
-    this.selectedGameId.set(game.id);
-  }
-
-  getThumbnail(game: Game): string {
-    const id = this.extractYoutubeId(game.url);
-    return game.thumbnail || (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '/logo.png');
+    console.log('Clicked:', game.id); // ✅ Should now fire
+    const currentId = this.selectedGameId();
+    this.selectedGameId.set(currentId === game.id ? null : game.id);
   }
 
   extractYoutubeId(url: string): string | null {
@@ -46,11 +47,16 @@ export class PcGameComponent {
     return match ? match[1] : null;
   }
 
-  getDescriptionLines(description: string): string[] {
-    return description.split('\n').filter(line => line.trim().length > 0);
+  getThumbnail(game: Game): string {
+    const id = this.extractYoutubeId(game.url);
+    return game.thumbnail || (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '/logo.png');
   }
 
   transformDropboxUrl(url: string): string {
     return url.replace('?dl=0', '?dl=1');
+  }
+
+  getDescriptionLines(description: string): string[] {
+    return description.split('\n').filter(line => line.trim().length > 0);
   }
 }

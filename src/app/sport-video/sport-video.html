@@ -21,35 +21,35 @@
     </div>
   } @else {
     <div class="video-list" role="list">
-      @for (video of videos(); track video.id) {
+      @for (video of videos(); track video.id ?? $index) {
         <div class="video-card" role="listitem" [attr.data-testid]="'video-card-' + video.id">
           <div class="card-content">
             <h2>{{ video.soccermatch }}</h2>
 
-            <!-- Video Preview -->
-            <div class="video-wrapper" (click)="selectVideo(video)">
-              <div class="video-preview">
-                <img
-                  [attr.data-testid]="'video-thumbnail-' + video.id"
-                  [src]="getThumbnail(video)"
-                  alt="Preview of {{ video.soccermatch }}"
-                  class="thumbnail"
-                  loading="lazy"
-                />
-                <div class="play-button" aria-hidden="true">▶</div>
-              </div>
-
+            <!-- Video Preview or Player -->
+            <div class="video-wrapper">
               @if (selectedVideoId() === video.id) {
                 <iframe
                   width="560"
                   height="315"
-                  [src]="'https://www.youtube.com/embed/' + extractYoutubeId(video.videourl)"
+                  [src]="selectedSafeUrl()"
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
                   [attr.data-testid]="'youtube-player-' + video.id"
                 ></iframe>
+              } @else {
+                <div class="video-preview" (click)="loadVideo(video)">
+                  <img
+                    [attr.data-testid]="'video-thumbnail-' + video.id"
+                    [src]="getThumbnail(video)"
+                    alt="Preview of {{ video.soccermatch }}"
+                    class="thumbnail"
+                    loading="lazy"
+                  />
+                  <div class="play-button" aria-hidden="true">▶</div>
+                </div>
               }
             </div>
 

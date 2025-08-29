@@ -1,31 +1,49 @@
+/* Base Layout */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+/* Loading State */
 .loading {
   text-align: center;
   margin-top: 2rem;
   opacity: 0.8;
 }
 
+/* Error State */
 .error {
   color: red;
   text-align: center;
   margin-top: 2rem;
 }
 
+/* Empty State */
 .empty-state {
   text-align: center;
   font-style: italic;
   margin-top: 2rem;
 }
 
+/* Game List */
 .game-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
   justify-content: center;
   padding: 1rem;
+  padding-bottom: 7rem; /* Prevent overlap with footer */
+  flex: 1;
 }
 
+/* Game Card */
 .game-card {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
@@ -33,35 +51,57 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* Card Content */
 .card-content {
   padding: 1rem;
 }
 
+.video-wrapper {
+  cursor: pointer;
+}
+
+.game-preview {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
 .thumbnail {
   width: 100%;
-  border-radius: 4px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
 }
 
 .play-button {
   position: absolute;
-  top: 45%;
-  left: 45%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2rem;
   color: white;
-  background: rgba(0,0,0,0.6);
   border-radius: 50%;
   padding: 0.5rem;
+  pointer-events: none; /* ✅ allows click to pass through */
+}
+youtube-player {
+  pointer-events: none;
 }
 
+/* Video Wrapper */
 .video-wrapper {
-  position: relative;
-  cursor: pointer;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  max-width: 560px;
+  margin: auto;
 }
 
+/* Description */
 .description {
   margin-top: 1rem;
 }
 
+/* Downloads */
 .downloads {
   margin-top: 1rem;
   display: flex;
@@ -72,5 +112,48 @@
 .download-link,
 .magnet-link {
   text-decoration: none;
-  color: #007bff;
+  color: #4179b5;
+  word-break: break-word;
+}
+
+/* Fixed Footer */
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .game-list {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    padding-bottom: 8rem;
+  }
+
+  .game-card {
+    width: 90%;
+  }
+
+  .play-button {
+    font-size: 1.1rem;
+    top: 50%;
+    left: 50%;
+  }
+
+  iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .downloads {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .download-link,
+  .magnet-link {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+  
 }

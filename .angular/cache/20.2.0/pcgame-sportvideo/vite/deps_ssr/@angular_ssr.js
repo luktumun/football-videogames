@@ -4,13 +4,16 @@ import {
   ROUTES,
   Router,
   loadChildren
-} from "./chunk-PFNV22CD.js";
+} from "./chunk-7OVAUY2E.js";
 import {
   BrowserDomAdapter,
   BrowserModule,
   EVENT_MANAGER_PLUGINS,
   EventManagerPlugin
-} from "./chunk-WKX2WARE.js";
+} from "./chunk-IID4OVPJ.js";
+import {
+  HTTP_ROOT_INTERCEPTOR_FNS
+} from "./chunk-CK6FP4ML.js";
 import {
   APP_BASE_HREF,
   NullViewportScroller,
@@ -19,10 +22,7 @@ import {
   ViewportScroller,
   getDOM,
   setRootDomAdapter
-} from "./chunk-LNGIMV23.js";
-import {
-  HTTP_ROOT_INTERCEPTOR_FNS
-} from "./chunk-U2RE4R6A.js";
+} from "./chunk-GBM6BW7O.js";
 import {
   XhrFactory
 } from "./chunk-YLQ75DQI.js";
@@ -72,11 +72,11 @@ import {
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-E6HZ6FKB.js";
+} from "./chunk-GA4HQGID.js";
+import "./chunk-2UVUUPPC.js";
 import {
   require_cjs
 } from "./chunk-C27DBZK2.js";
-import "./chunk-2UVUUPPC.js";
 import "./chunk-K54IFBYX.js";
 import {
   __objRest,

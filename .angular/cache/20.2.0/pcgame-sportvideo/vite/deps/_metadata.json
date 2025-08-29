@@ -1,49 +1,55 @@
 {
-  "hash": "5d54c02d",
-  "configHash": "e98498fd",
-  "lockfileHash": "d4125605",
-  "browserHash": "2ec842d5",
+  "hash": "81cdad90",
+  "configHash": "6615b539",
+  "lockfileHash": "c3d07b95",
+  "browserHash": "5d9c9d3c",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "be30f1c7",
+      "fileHash": "c9efca91",
       "needsInterop": false
     },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "fbdd7947",
+      "fileHash": "28ade279",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "1207ff57",
+      "fileHash": "75789db2",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "717dd208",
+      "fileHash": "a4974ace",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "671424f2",
+      "fileHash": "cf72a2cc",
       "needsInterop": false
     },
     "rxjs": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/index.js",
       "file": "rxjs.js",
-      "fileHash": "fab4a722",
+      "fileHash": "ad8db4f7",
       "needsInterop": false
     },
     "rxjs/operators": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/operators/index.js",
       "file": "rxjs_operators.js",
-      "fileHash": "3e20e235",
+      "fileHash": "123a5d33",
+      "needsInterop": false
+    },
+    "@angular/youtube-player": {
+      "src": "../../../../../../node_modules/@angular/youtube-player/fesm2022/youtube-player.mjs",
+      "file": "@angular_youtube-player.js",
+      "fileHash": "ccae8160",
       "needsInterop": false
     }
   },

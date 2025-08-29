@@ -46,11 +46,9 @@ export class SportVideoComponent implements OnInit {
       }
     });
   }
-  selectVideo(video: Video): void {
-    this.selectedVideoId.set(video.id);
-  }
 
   loadVideo(video: Video): void {
+    console.log('Clicked video:', video.id); // ✅ Debug trace
     const youtubeId = this.extractYoutubeId(video.videourl);
     this.selectedVideoId.set(video.id);
 
