@@ -7,6 +7,5 @@ export interface Game {
   url1?: string;
   description?: string;
   image?: string;
-  thumbnail?: string;
-  sourceType: SourceType; // ✅ now accepts all valid types
+ 
 }

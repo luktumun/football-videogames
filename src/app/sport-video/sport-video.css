@@ -36,9 +36,8 @@ body {
   gap: 1.5rem;
   justify-content: center;
   padding: 1rem;
-  padding-bottom: 7rem; /* Prevent overlap with footer */
+  padding-bottom: 7rem;
   flex: 1;
-  overflow-x: hidden; /* ✅ Prevent horizontal scroll */
 }
 
 /* Video Card */
@@ -57,30 +56,42 @@ body {
   padding: 1rem;
 }
 
+.debug-id {
+  font-size: 0.8rem;
+  color: gray;
+  padding: 0.5rem;
+}
+
+.selected-id {
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
 /* Video Wrapper */
 .video-wrapper {
-  position: relative;
+  aspect-ratio: 16 / 9;
   width: 100%;
   max-width: 560px;
-  aspect-ratio: 16 / 9;
   margin: auto;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 /* Video Preview */
 .video-preview {
   position: relative;
   display: inline-block;
-  width: 100%;
   cursor: pointer;
 }
 
 /* Thumbnail */
 .thumbnail {
-  display: block;
   width: 100%;
   height: auto;
+  display: block;
   border-radius: 8px;
+  pointer-events: auto;
 }
 
 /* Play Button */
@@ -94,24 +105,17 @@ body {
   border-radius: 50%;
   padding: 0.5rem;
   pointer-events: none;
-  transition: transform 0.2s ease-in-out;
 }
 
-.video-preview:hover .play-button {
-  transform: translate(-50%, -50%) scale(1.1);
+/* YouTube Player */
+youtube-player {
+  pointer-events: auto;
+  border: 2px solid red;
 }
 
 /* Description */
 .description {
   margin-top: 1rem;
-}
-
-.description ul {
-  padding-left: 1.2rem;
-}
-
-.description li {
-  margin-bottom: 0.5rem;
 }
 
 /* Downloads */
@@ -125,21 +129,12 @@ body {
 .download-link,
 .magnet-link {
   text-decoration: none;
-  color: #007bff;
+  color: #4179b5;
   word-break: break-word;
 }
 
-/* Responsive iframe */
-iframe {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  margin-top: 1rem;
-  border-radius: 6px;
-}
-
-/* 📱 Mobile Responsiveness */
-@media (max-width: 600px) {
+/* Responsive */
+@media (max-width: 768px) {
   .video-list {
     flex-direction: column;
     align-items: center;
@@ -153,6 +148,12 @@ iframe {
 
   .play-button {
     font-size: 1.1rem;
+  }
+
+  iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .downloads {

@@ -1,88 +1,87 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Video, SourceType } from '../models/video';
 import { VideoService } from '../services/video.service';
+import { Video } from '../models/video';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @Component({
   selector: 'app-sport-video',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './sport-video.html',
-  styleUrls: ['./sport-video.css']
+  styleUrls: ['./sport-video.css'],
+  imports: [CommonModule,YouTubePlayerModule],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class SportVideoComponent implements OnInit {
+export class SportVideoComponent {
   readonly videos = signal<Video[]>([]);
   readonly loading = signal(true);
-  readonly error = signal('');
+  readonly error = signal<string | null>(null);
   readonly selectedVideoId = signal<number | null>(null);
-  readonly selectedSafeUrl = signal<SafeResourceUrl | null>(null);
 
-  constructor(
-    private readonly videoService: VideoService,
-    private readonly sanitizer: DomSanitizer
-  ) {}
+  constructor(private videoService: VideoService, private sanitizer: DomSanitizer) {
+    this.fetchVideos();
+  }
 
-  ngOnInit(): void {
+  fetchVideos(): void {
     this.videoService.getVideos().subscribe({
-      next: (res: any[]) => {
-        const mapped: Video[] = res.map(video => ({
-          id: video._id,
-          soccermatch: video.soccermatch,
-          videourl: video.videourl,
-          description: video.description,
-          mediacontent: video.mediacontent,
-          subtitle: video.subtitle,
-          torrentdownloadlink: video.torrentdownloadlink,
-          thumbnail: video.thumbnail,
-          sourceType: this.detectSourceType(video.videourl)
-        }));
-        this.videos.set(mapped);
+      next: (data) => {
+        this.videos.set(data);
         this.loading.set(false);
+        console.log('✅ Videos loaded:', data.length);
       },
-      error: () => {
-        this.error.set('Failed to load sport videos');
+      error: (err) => {
+        console.error('❌ Error fetching videos:', err);
+        this.error.set('Failed to load sport videos.');
         this.loading.set(false);
       }
     });
   }
 
-  loadVideo(video: Video): void {
-    console.log('Clicked video:', video.id); // ✅ Debug trace
-    const youtubeId = this.extractYoutubeId(video.videourl);
-    this.selectedVideoId.set(video.id);
+  public get videoList(): Video[] {
+    return this.videos();
+  }
 
-    if (video.sourceType === 'youtube' && youtubeId) {
-      const embedUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=1`;
-      this.selectedSafeUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl));
-    } else {
-      this.selectedSafeUrl.set(null);
+  public get selectedId(): number | null {
+    return this.selectedVideoId();
+  }
+
+  public selectVideo(video: Video): void {
+    const currentId = this.selectedVideoId();
+    const newId = currentId === video.id ? null : video.id;
+    this.selectedVideoId.set(newId);
+    console.log(`⚽ Video clicked: ${video.id}, Selected ID: ${newId}`);
+  }
+
+  public extractYoutubeId(url: string | undefined): string | null {
+    if (!url) return null;
+    const regExp = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^?&]+)/;
+    const match = url.match(regExp);
+    const id = match?.[1] ?? null;
+    console.log('🔍 Extracted YouTube ID:', id);
+    return id;
+  }
+
+  public getThumbnail(video: Video | undefined): string {
+    if (!video || !video.videourl) {
+      console.warn('⚠️ getThumbnail called with invalid video:', video);
+      return '/logo.png';
     }
-  }
-
-  extractYoutubeId(url: string): string | null {
-    const match = url?.match(/(?:v=|\/embed\/|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-    return match ? match[1] : null;
-  }
-
-  detectSourceType(url: string): SourceType {
-    if (!url) return 'unknown';
-    if (url.includes('youtube.com') || url.includes('youtu.be')) return 'youtube';
-    if (url.includes('dropbox.com')) return 'dropbox';
-    if (url.startsWith('magnet:')) return 'magnet';
-    return 'unknown';
-  }
-
-  getThumbnail(video: Video): string {
     const id = this.extractYoutubeId(video.videourl);
-    return video.thumbnail || (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : 'assets/placeholder.jpg');
+    const thumbnail = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '/logo.png';
+    console.log(`🖼️ Thumbnail for ${video.id}:`, thumbnail);
+    return thumbnail;
   }
 
-  transformDropboxUrl(url: string): string {
-    return url.includes('dropbox.com') ? url.replace(/(\?dl=0|\?raw=0)?$/, '?raw=1') : url;
+  public transformDropboxUrl(url: string): string {
+    return url.replace('?dl=0', '?dl=1');
   }
 
-  getDescriptionLines(desc?: string): string[] {
-    return desc?.split('\n').map(line => line.trim()).filter(Boolean) || [];
+  public getDescriptionLines(description: string): string[] {
+    return description.split('\n').filter(line => line.trim().length > 0);
+  }
+
+  public trackByVideoId(index: number, video: Video): number {
+    return video.id;
   }
 }

@@ -1,14 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { GameService } from '../services/game.service';
 import { Game } from '../models/game';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pc-game',
   templateUrl: './pc-game.html',
   styleUrls: ['./pc-game.css'],
   standalone: true,
-  imports: [YouTubePlayerModule]
+  imports: [CommonModule,YouTubePlayerModule],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class PcGameComponent {
   readonly games = signal<Game[]>([]);
@@ -16,9 +18,7 @@ export class PcGameComponent {
   readonly error = signal<string | null>(null);
   readonly selectedGameId = signal<number | null>(null);
 
-  constructor(
-    private gamesService: GameService,
-  ) {
+  constructor(private gamesService: GameService) {
     this.fetchGames();
   }
 
@@ -27,36 +27,57 @@ export class PcGameComponent {
       next: (data) => {
         this.games.set(data);
         this.loading.set(false);
+        console.log('✅ Games loaded:', data.length);
       },
       error: (err) => {
-        console.error('Error fetching games:', err);
+        console.error('❌ Error fetching games:', err);
         this.error.set('Failed to load games.');
         this.loading.set(false);
       }
     });
   }
+  public get selectedId(): number | null {
+    return this.selectedGameId();
+  }
+  public get gameList(): Game[] {
+    return this.games();
+  }
 
-  selectGame(game: Game): void {
-    console.log('Clicked:', game.id); // ✅ Should now fire
+  public selectGame(game: Game): void {
     const currentId = this.selectedGameId();
-    this.selectedGameId.set(currentId === game.id ? null : game.id);
+    const newId = currentId === game.id ? null : game.id;
+    this.selectedGameId.set(newId);
+    console.log(`🎮 Game clicked: ${game.id}, Selected ID: ${newId}`);
   }
 
-  extractYoutubeId(url: string): string | null {
-    const match = url?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/);
-    return match ? match[1] : null;
+  public extractYoutubeId(url: string | undefined): string | null {
+    if (!url) return null;
+    const regExp = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^?&]+)/;
+    const match = url.match(regExp);
+    const id = match?.[1] ?? null;
+    console.log('🔍 Extracted YouTube ID:', id);
+    return id;
   }
 
-  getThumbnail(game: Game): string {
+  public getThumbnail(game: Game | undefined): string {
+    if (!game || !game.url) {
+      console.warn('⚠️ getThumbnail called with invalid game:', game);
+      return '/logo.png';
+    }
     const id = this.extractYoutubeId(game.url);
-    return game.thumbnail || (id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '/logo.png');
+    const thumbnail = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : '/logo.png';
+    console.log(`🖼️ Thumbnail for ${game.id}:`, thumbnail);
+    return thumbnail;
   }
 
-  transformDropboxUrl(url: string): string {
+  public transformDropboxUrl(url: string): string {
     return url.replace('?dl=0', '?dl=1');
   }
 
-  getDescriptionLines(description: string): string[] {
+  public getDescriptionLines(description: string): string[] {
     return description.split('\n').filter(line => line.trim().length > 0);
+  }
+  public trackByGameId(index: number, game: Game): number {
+    return game.id;
   }
 }

@@ -29,7 +29,7 @@ html, body {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #ffffff;
-  color: #d69e58;
+  color: #393fdd;
   box-shadow: 0 2px 4px rgba(94, 166, 201, 0.2);
 }
 
@@ -47,7 +47,7 @@ html, body {
 }
 
 .nav-btn {
-  background-color: #d69e58;
+  background-color: #393fdd;
   color: #fff;
   font-weight: 800;
   font-size: 1rem;
@@ -59,7 +59,7 @@ html, body {
 }
 
 .nav-btn:hover {
-  background-color: #b98d8d;
+  background-color: #393fdd;
 }
 
 /* Optional navbar block */
@@ -101,8 +101,8 @@ html, body {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to right, #ffffff, #5aa4d8); /* Deep blue gradient */
-  color: #d69e58; /* Soft light text for contrast */
+  background: linear-gradient(to right, #ffffff, #dfd854); /* Deep blue gradient */
+  color: #393fdd; /* Soft light text for contrast */
   text-align: center;
   padding: 1rem;
   font-size: 1.2rem;

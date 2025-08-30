@@ -1,97 +1,69 @@
-<!-- Loading State -->
-@if (loading()) {
-  <div class="loading" role="status" aria-live="polite">
-    <img src="/logo.png" alt="Loading logo" width="100" />
-    Loading sport videos...
-  </div>
-}
+<div class="video-list">
+  <div
+    class="video-card"
+    *ngFor="let video of videoList; trackBy: trackByVideoId"
+    role="listitem"
+    [attr.data-testid]="'video-card-' + video.id"
+  >
+    <div class="card-content">
+      <h2>{{ video.soccermatch }}</h2>
 
-<!-- Error State -->
-@if (!loading() && error()) {
-  <div class="error" role="alert">
-    {{ error() }}
-  </div>
-}
-
-<!-- Content State -->
-@if (!loading() && !error()) {
-  @if (videos().length === 0) {
-    <div class="empty-state" data-testid="empty-video-list">
-      No sport videos available at the moment.
-    </div>
-  } @else {
-    <div class="video-list" role="list">
-      @for (video of videos(); track video.id ?? $index) {
-        <div class="video-card" role="listitem" [attr.data-testid]="'video-card-' + video.id">
-          <div class="card-content">
-            <h2>{{ video.soccermatch }}</h2>
-
-            <!-- Video Preview or Player -->
-            <div class="video-wrapper">
-              @if (selectedVideoId() === video.id) {
-                <iframe
-                  width="560"
-                  height="315"
-                  [src]="selectedSafeUrl()"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  [attr.data-testid]="'youtube-player-' + video.id"
-                ></iframe>
-              } @else {
-                <div class="video-preview" (click)="loadVideo(video)">
-                  <img
-                    [attr.data-testid]="'video-thumbnail-' + video.id"
-                    [src]="getThumbnail(video)"
-                    alt="Preview of {{ video.soccermatch }}"
-                    class="thumbnail"
-                    loading="lazy"
-                  />
-                  <div class="play-button" aria-hidden="true">▶</div>
-                </div>
-              }
-            </div>
-
-            <!-- Description -->
-            @if (video.description) {
-              <div class="description">
-                <h3>Description:</h3>
-                <ul>
-                  @for (line of getDescriptionLines(video.description); track line) {
-                    <li>{{ line }}</li>
-                  }
-                </ul>
-              </div>
-            }
-
-            <!-- Download Links -->
-            @if (video.torrentdownloadlink) {
-              <div class="downloads">
-                <a
-                  [href]="transformDropboxUrl(video.torrentdownloadlink)"
-                  target="_blank"
-                  rel="noopener"
-                  download
-                  class="download-link"
-                  [attr.data-testid]="'dropbox-link-' + video.id"
-                >
-                  📥 Download from Dropbox
-                </a>
-                <a
-                  [href]="video.torrentdownloadlink"
-                  target="_blank"
-                  rel="noopener"
-                  class="magnet-link"
-                  [attr.data-testid]="'magnet-link-' + video.id"
-                >
-                  🧲 Open Magnet Link
-                </a>
-              </div>
-            }
-          </div>
+  
+      <!-- Video Preview or Player -->
+      <div class="video-wrapper">
+        <div *ngIf="selectedId === video.id; else showThumbnail">
+          <youtube-player
+            [videoId]="extractYoutubeId(video.videourl) ?? undefined"
+            [height]="315"
+            [width]="560"
+            [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
+            [attr.data-testid]="'youtube-player-' + video.id"
+          ></youtube-player>
         </div>
-      }
+        <ng-template #showThumbnail>
+          <div class="video-preview" (click)="selectVideo(video)">
+            <img
+              [src]="getThumbnail(video)"
+              alt="Preview of {{ video.soccermatch }}"
+              class="thumbnail"
+            />
+            <div class="play-button" aria-hidden="true">▶</div>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Description -->
+      <div *ngIf="video.description" class="description">
+        <h3>Description:</h3>
+        <ul>
+          <li *ngFor="let line of getDescriptionLines(video.description)">
+            {{ line }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- Download Links -->
+      <div *ngIf="video.torrentdownloadlink" class="downloads">
+        <a
+          [href]="transformDropboxUrl(video.torrentdownloadlink)"
+          target="_blank"
+          rel="noopener"
+          download
+          class="download-link"
+          [attr.data-testid]="'dropbox-link-' + video.id"
+        >
+          📥 Download from Dropbox
+        </a>
+        <a
+          [href]="video.torrentdownloadlink"
+          target="_blank"
+          rel="noopener"
+          class="magnet-link"
+          [attr.data-testid]="'magnet-link-' + video.id"
+        >
+          🧲 Open Magnet Link
+        </a>
+      </div>
     </div>
-  }
-}
+  </div>
+</div>

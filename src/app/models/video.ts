@@ -8,6 +8,5 @@ export interface Video {
   mediacontent?: string;
   subtitle?: string;
   torrentdownloadlink?: string;
-  thumbnail?: string;
-  sourceType: SourceType;
+ 
 }
