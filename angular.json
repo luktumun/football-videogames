@@ -1,0 +1,97 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "pcgame-sportvideo": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "tsConfig": "tsconfig.app.json", 
+            "outputPath": "dist/pcgame-sportvideo",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/"
+              },
+              "src/favicon.ico",
+              "src/_redirects",
+              "src/assets",
+              "src/sitemap.xml",
+              "src/robots.txt"
+            ],
+            "styles": ["src/styles.css"]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@ngx-env/builder:dev-server",
+          "options": {
+            "buildTarget": "pcgame-sportvideo:build",
+            "proxyConfig": "proxy.conf.json"
+
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pcgame-sportvideo:build:production"
+            },
+            "development": {
+              "buildTarget": "pcgame-sportvideo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": ["src/styles.css"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "83861f76-8d1d-43a5-9072-020d4431dd72"
+  }
+}

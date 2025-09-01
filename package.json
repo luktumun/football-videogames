@@ -1,0 +1,75 @@
+{
+  "name": "pcgame-sportvideo",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --configuration=production",
+    "watch": "ng build --watch --configuration=development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.{ts,html,css}\"",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "start-server-and-test start http://localhost:4200 cypress:run",
+    "env:dev": "ngx-env --envFilePath=src/environments/.env.dev",
+    "env:prod": "ngx-env --envFilePath=src/environments/.env.prod",
+    "validate:env": "node ./scripts/validate-env.js",
+    "start:dev": "npm run env:dev && npm run validate:env && ng serve",
+    "start:prod": "npm run env:prod && npm run validate:env && ng serve --configuration=production"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/compiler": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "@angular/forms": "^20.2.0",
+    "@angular/platform-browser": "^20.2.1",
+    "@angular/platform-server": "^20.2.0",
+    "@angular/router": "^20.2.1",
+    "@angular/youtube-player": "^20.2.1",
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0",
+    "zone.js": "^0.15.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^20.2.1",
+    "@angular/build": "^20.2.0",
+    "@angular/cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.0",
+    "@angular/ssr": "^20.2.0",
+    "@ngx-env/builder": "^1.0.0",
+    "@types/axios": "^0.9.36",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
+    "cypress": "^15.0.0",
+    "dotenv": "^17.2.1",
+    "jasmine-core": "~5.9.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.2.5",
+    "start-server-and-test": "^2.0.13",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.2"
+  }
+}
