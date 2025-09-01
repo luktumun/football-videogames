@@ -19,10 +19,10 @@ export class VideoService {
       collection: 'torrentfiles',
       filter: {}
     };
-    return this.http.post<Video[]>(`${this.baseUrl}/videos`, body);
+    return this.http.post<Video[]>(`${this.baseUrl}/api/torrentfiles`, body);
   }
 
   getVideoById(id: number): Observable<Video> {
-    return this.http.get<Video>(`${this.baseUrl}/${id}`);
+    return this.http.get<Video>(`${this.baseUrl}/api/torrentfiles/${id}`);
   }
 }
