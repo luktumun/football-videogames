@@ -1,0 +1,76 @@
+<div class="game-list">
+  <div
+    class="game-card"
+    *ngFor="let game of games; trackBy: trackByGameId"
+    role="listitem"
+    [attr.data-testid]="'game-card-' + game._id"
+  >
+    <div class="card-content">
+      <h2 style="color: #141be9;">{{ game.title }}</h2>
+
+      <div class="media-card">
+        <!-- Left: Video or Thumbnail -->
+        <div class="video-wrapper">
+          <!-- Show video player if activeGameId matches -->
+          <div *ngIf="activeGameId === game._id">
+            <youtube-player
+              [videoId]="extractYoutubeId(game.url) ?? undefined"
+              [height]="360"
+              [width]="640"
+              class="video-frame"
+              (stateChange)="onPlayerStateChange($event, game)"
+
+              [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
+              [attr.data-testid]="'youtube-player-' + game._id"
+              [attr.key]="game._id"
+            ></youtube-player>
+          </div>
+        
+          <!-- Show thumbnail if not active -->
+          <div *ngIf="activeGameId !== game._id" class="video-preview" (click)="playGameHandler(game)">
+            <img
+              [src]="getThumbnail(game)"
+              alt="Preview of {{ game.title }}"
+              class="video-frame thumbnail"
+            />
+            <div class="play-button" aria-hidden="true">▶</div>
+          </div>
+        </div>
+
+        <!-- Right: Description and Downloads -->
+        <div class="card-details">
+          <div *ngIf="game.description" class="description">
+            <h3 style="color: #1017ea">Description:</h3>
+            <ul>
+              <li style="color: #2f35d9;" *ngFor="let line of getDescriptionLines(game.description)">
+                {{ line }}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="game.url1" class="downloads">
+            <a
+              [href]="transformDropboxUrl(game.url1)"
+              target="_blank"
+              rel="noopener"
+              download
+              class="download-link"
+              [attr.data-testid]="'dropbox-link-' + game._id"
+            >
+              📥 Download from Dropbox
+            </a>
+            <a
+              [href]="game.url1"
+              target="_blank"
+              rel="noopener"
+              class="magnet-link"
+              [attr.data-testid]="'magnet-link-' + game._id"
+            >
+              🧲 Open Magnet Link
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

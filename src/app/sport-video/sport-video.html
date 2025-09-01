@@ -1,0 +1,74 @@
+<div class="video-list">
+  <div
+    class="video-card"
+    *ngFor="let video of videos; trackBy: trackByVideoId"
+    role="listitem"
+    [attr.data-testid]="'video-card-' + video._id"
+  >
+    <div class="card-content">
+      <h2 style="color: #0c13e5;">{{ video.soccermatch }}</h2>
+
+      <div class="media-card">
+        <!-- Left: Video or Thumbnail -->
+        <div class="video-wrapper">
+          <!-- Show video player if activeVideoId matches -->
+          <div *ngIf="activeVideoId === video._id">
+            <youtube-player
+              [videoId]="extractYoutubeId(video.videourl) ?? undefined"
+              [height]="360"
+              [width]="640"
+              class="video-frame"
+              (stateChange)="onPlayerStateChange($event, video)"
+              [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
+              [attr.data-testid]="'youtube-player-' + video._id"
+              [attr.key]="video._id"
+            ></youtube-player>
+          </div>
+        
+          <!-- Show thumbnail if not active -->
+          <div *ngIf="activeVideoId !== video._id" class="video-preview" (click)="playVideoHandler(video)">
+            <img
+              [src]="getThumbnail(video)"
+              alt="Preview of {{ video.soccermatch }}"
+              class="video-frame"
+            />
+            <div class="play-button" aria-hidden="true">▶</div>
+          </div>
+        </div>
+        <!-- Right: Description and Downloads -->
+        <div class="card-details">
+          <div *ngIf="video.description" class="description">
+            <h3 style="color: #1118e6;" >Description:</h3>
+            <ul>
+              <li style="color: #393fdd;" *ngFor="let line of getDescriptionLines(video.description)">
+                {{ line }}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="video.torrentdownloadlink" class="downloads">
+            <a 
+              [href]="transformDropboxUrl(video.torrentdownloadlink)"
+              target="_blank"
+              rel="noopener"
+              download
+              class="download-link"
+              [attr.data-testid]="'dropbox-link-' + video._id"
+            >
+              📥 Download from Dropbox
+            </a>
+            <a
+              [href]="video.torrentdownloadlink"
+              target="_blank"
+              rel="noopener"
+              class="magnet-link"
+              [attr.data-testid]="'magnet-link-' + video._id"
+            >
+              🧲 Open Magnet Link
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
