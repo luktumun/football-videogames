@@ -40,14 +40,14 @@
           <div *ngIf="video.description" class="description">
             <h3 style="color: #1118e6;" >Description:</h3>
             <ul>
-              <li style="color: #393fdd;" *ngFor="let line of getDescriptionLines(video.description)">
+              <li style="color: #4ce821;" *ngFor="let line of getDescriptionLines(video.description)">
                 {{ line }}
               </li>
             </ul>
           </div>
 
           <div *ngIf="video.torrentdownloadlink" class="downloads">
-            <a 
+            <a style="color: #4ce821;"
               [href]="transformDropboxUrl(video.torrentdownloadlink)"
               target="_blank"
               rel="noopener"
@@ -57,7 +57,7 @@
             >
               📥 Download from Dropbox
             </a>
-            <a
+            <a style="color: #4ce821;"
               [href]="video.torrentdownloadlink"
               target="_blank"
               rel="noopener"

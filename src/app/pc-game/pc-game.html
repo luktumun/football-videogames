@@ -42,14 +42,14 @@
           <div *ngIf="game.description" class="description">
             <h3 style="color: #1017ea">Description:</h3>
             <ul>
-              <li style="color: #2f35d9;" *ngFor="let line of getDescriptionLines(game.description)">
+              <li style="color: #4ce821;" *ngFor="let line of getDescriptionLines(game.description)">
                 {{ line }}
               </li>
             </ul>
           </div>
 
           <div *ngIf="game.url1" class="downloads">
-            <a
+            <a style="color: #4ce821;"
               [href]="transformDropboxUrl(game.url1)"
               target="_blank"
               rel="noopener"
@@ -59,7 +59,7 @@
             >
               📥 Download from Dropbox
             </a>
-            <a
+            <a style="color: #4ce821;"
               [href]="game.url1"
               target="_blank"
               rel="noopener"
