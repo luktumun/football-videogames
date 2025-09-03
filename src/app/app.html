@@ -1,21 +1,22 @@
 <!-- app.component.html -->
-
-<header class="app-header">
-    <div class="header-content">
-      <img    src="/pcgamesportvideo.png" alt="App Logo" class="logo" />
-      <h1>PcGameSportVideo</h1>
-    </div>
+<div class="app-container">
+<header class="header">
+   
+      <div class="logo">
+      <img    src="/pcgamesportvideo.png"  alt="App Logo" width="149px" height="149px"  />
+      PcGameSportVideo</div>
+   
  
  
   <nav class="nav-buttons">
     <a routerLink="/" class="nav-btn">
-      <i class="fa fa-home"></i> Home
+      Home
     </a>
     <a routerLink="/pcgame" class="nav-btn">
-      <i class="fa fa-gamepad"></i> PC Game
+       PC Game
     </a>
     <a routerLink="/sportvideo" class="nav-btn">
-      <i class="fa fa-trophy"></i> Sport Video
+      Sport Video
     </a>
   </nav>
 
@@ -23,7 +24,7 @@
 </header>
  
 
-  <main class="content">
+  <main class="main-content">
   
 
     <router-outlet></router-outlet>
@@ -35,3 +36,4 @@
   <footer class="footer">
     <p>© 2025 PC Game Hub. Built for clarity, speed, and elegance.</p>
   </footer>
+</div>

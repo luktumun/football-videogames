@@ -1,173 +1,26 @@
-/* Reset and base layout */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-}
-
-/* App container layout */
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Header layout */
-.app-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #ffffff;
-  color: #101018;
-  box-shadow: 0 2px 4px rgba(94, 166, 201, 0.2);
-}
-
-.logo {
-  height: 160px;
-  width: 230px;
-  object-fit: contain;
-}
-
-/* Navigation buttons */
-.nav-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.nav-btn {
-  text-decoration: none;
-  padding: 8px 12px;
-  background-color: #101018;
-  color: white;
-  border-radius: 4px;
-  display: inline-block;
-  font-weight: bold;
-  margin-right: 8px;
-  font-size: 1.5em;
-}
-.nav-btn:hover {
-  background-color: #46464b;
-}
-
-.nav-btn:hover {
-  background-color: #5d5d62;
-}
-
-/* Optional navbar block */
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  background-color: #e0e0ff;
-  padding: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.nav-item {
-  font-size: 1rem;
-  padding: 0.5rem;
-  color: #101018;
-  text-decoration: none;
-}
-
-.nav-item:hover {
-  color: #ffffff;
-}
-
-/* Main content layout */
-.content {
-  flex: 1;
-  width: 100%;
-  padding: 1rem;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  box-shadow: none;
-  border-radius: 0;
-  overflow-y: auto;
-}
-
-
-
-
-
-
-/* Mobile responsiveness */
-@media (max-width: 600px) {
-  .app-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-  }
-
-  .logo {
-    height: auto;
-    width: 100%;
-    max-width: 200px;
-    margin-bottom: 1rem;
-  }
-
-  .nav-buttons {
-    flex-direction: column;
-    text-decoration: none;
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  .nav-btn {
-    width: 100%;
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem;
-  }
-
-  .content {
-    padding: 0.5rem;
-    padding-bottom: 7rem; /* Prevent overlap with fixed footer */
-  }
-  .footer {
-    font-size: 0.8rem;
-    padding: 0.75rem;
-    line-height: 1.4;
-    text-align: center;
-  }
-
-  .footer a {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-  }
-
-}
-
-
-
 .app-container {
   font-family: Arial, sans-serif;
 }
 
-.app-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #222;
   color: white;
   padding: 10px 20px;
+  flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-buttons a {
@@ -185,6 +38,7 @@ html, body {
   padding: 20px;
   padding-bottom: 60px; /* space for footer */
 }
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -207,4 +61,30 @@ html, body {
 
 .footer p:hover {
   color: #ff6347; /* Tomato hover effect */
+}
+
+/* ✅ Mobile Compatibility */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-buttons {
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  .nav-buttons a {
+    margin: 5px 0;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 10px 0;
+  }
 }

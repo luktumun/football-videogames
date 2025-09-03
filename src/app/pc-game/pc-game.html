@@ -1,4 +1,11 @@
-<div class="game-list">
+<!-- pc-game.component.html -->
+
+<!-- Title and loading indicator -->
+<h2>PC Game List</h2>
+<p *ngIf="!games || games.length === 0">Loading...</p>
+
+<!-- Game list -->
+<div class="game-list" *ngIf="games && games.length > 0">
   <div
     class="game-card"
     *ngFor="let game of games; trackBy: trackByGameId"
@@ -19,13 +26,12 @@
               [width]="640"
               class="video-frame"
               (stateChange)="onPlayerStateChange($event, game)"
-
               [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
               [attr.data-testid]="'youtube-player-' + game._id"
               [attr.key]="game._id"
             ></youtube-player>
           </div>
-        
+
           <!-- Show thumbnail if not active -->
           <div *ngIf="activeGameId !== game._id" class="video-preview" (click)="playGameHandler(game)">
             <img
@@ -49,7 +55,8 @@
           </div>
 
           <div *ngIf="game.url1" class="downloads">
-            <a style="color: #eb2626;"
+            <a
+              style="color: #eb2626;"
               [href]="transformDropboxUrl(game.url1)"
               target="_blank"
               rel="noopener"
@@ -59,7 +66,8 @@
             >
               📥 Download from Dropbox
             </a>
-            <a style="color: #e34023;"
+            <a
+              style="color: #e34023;"
               [href]="game.url1"
               target="_blank"
               rel="noopener"
