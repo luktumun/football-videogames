@@ -6,7 +6,7 @@
     [attr.data-testid]="'video-card-' + video._id"
   >
     <div class="card-content">
-      <h2 style="color: #0c13e5;">{{ video.soccermatch }}</h2>
+      <h2 style="color: #101018;">{{ video.soccermatch }}</h2>
 
       <div class="media-card">
         <!-- Left: Video or Thumbnail -->
@@ -38,16 +38,16 @@
         <!-- Right: Description and Downloads -->
         <div class="card-details">
           <div *ngIf="video.description" class="description">
-            <h3 style="color: #1118e6;" >Description:</h3>
+            <h3 style="color: #101018;" >Description:</h3>
             <ul>
-              <li style="color: #4ce821;" *ngFor="let line of getDescriptionLines(video.description)">
+              <li style="color: #1e90ff;" *ngFor="let line of getDescriptionLines(video.description)">
                 {{ line }}
               </li>
             </ul>
           </div>
 
           <div *ngIf="video.torrentdownloadlink" class="downloads">
-            <a style="color: #4ce821;"
+            <a style="color: #e34023;"
               [href]="transformDropboxUrl(video.torrentdownloadlink)"
               target="_blank"
               rel="noopener"
@@ -57,7 +57,7 @@
             >
               📥 Download from Dropbox
             </a>
-            <a style="color: #4ce821;"
+            <a style="color: #e34023;"
               [href]="video.torrentdownloadlink"
               target="_blank"
               rel="noopener"

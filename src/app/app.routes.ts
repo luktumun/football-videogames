@@ -5,8 +5,8 @@ import { PcGameComponent } from './pc-game/pc-game';
 import { SportVideoComponent } from './sport-video/sport-video';
 
 export const routes: Routes = [
-  { path: 'games', component: PcGameComponent },
-  { path: 'videos', component: SportVideoComponent },
-  { path: '', redirectTo: '/games', pathMatch: 'full' },
-  { path: '**', redirectTo: '/games' }
+  { path: 'pcgame', component: PcGameComponent },
+  { path: 'sportvideo', component: SportVideoComponent },
+  { path: '', redirectTo: '/pcgame', pathMatch: 'full' },
+  { path: '**', redirectTo: '/pcgame' }
 ];

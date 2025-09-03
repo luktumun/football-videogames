@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//google21febcef2511a9ec.html</loc>
+		<priority>0.82</priority>
+		<lastmod>2025-09-02</lastmod>
+	</url>
+	<url>
 		<loc>https://www.pcgamesportvideo.netlify.app//src</loc>
 		<priority>0.82</priority>
 		<lastmod>2025-08-27</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//google21febcef2511a9ec.html</loc>
-		<priority>0.82</priority>
+		<loc>https://www.pcgamesportvideo.netlify.app//dist/pcgame-sportvideo</loc>
+		<priority>0.73</priority>
 		<lastmod>2025-09-02</lastmod>
 	</url>
 	<url>
@@ -16,17 +21,7 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//dist/pcgame-sportvideo</loc>
-		<priority>0.73</priority>
-		<lastmod>2025-09-02</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//src/app/app.html</loc>
-		<priority>0.64</priority>
-		<lastmod>2025-08-29</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/tslib/tslib.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/jsbn/example.html</loc>
 		<priority>0.64</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
@@ -36,52 +31,17 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/jsbn/example.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/tslib/tslib.html</loc>
 		<priority>0.64</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//src/app/sport-video/sport-video.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-09-02</lastmod>
+		<loc>https://www.pcgamesportvideo.netlify.app//src/app/app.html</loc>
+		<priority>0.64</priority>
+		<lastmod>2025-09-03</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//src/app/pc-game/pc-game.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-09-02</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/ua-parser-js/dist/ua-parser.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/terser/tools/props.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/serve-index/public/directory.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/less/test/sourcemaps</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/debug.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/context.html</loc>
-		<priority>0.55</priority>
-		<lastmod>2025-08-31</lastmod>
-	</url>
-	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/client_with_context.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/flatted/php/flatted.php</loc>
 		<priority>0.55</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
@@ -91,12 +51,52 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/flatted/php/flatted.php</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/client_with_context.html</loc>
 		<priority>0.55</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/xhr2/test/html/browser_test.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/context.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/karma/static/debug.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/less/test/sourcemaps</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/serve-index/public/directory.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/terser/tools/props.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/ua-parser-js/dist/ua-parser.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-08-31</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//src/app/pc-game/pc-game.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-09-03</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//src/app/sport-video/sport-video.html</loc>
+		<priority>0.55</priority>
+		<lastmod>2025-09-03</lastmod>
+	</url>
+	<url>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/needle/test/files/Appalachia.html</loc>
 		<priority>0.45</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
@@ -106,12 +106,12 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/needle/test/files/Appalachia.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/xhr2/test/html/browser_test.html</loc>
 		<priority>0.45</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/htmlparser2/src/__fixtures__/Documents/Svg.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/htmlparser2/src/__fixtures__/Documents/Attributes.html</loc>
 		<priority>0.36</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
@@ -121,7 +121,7 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/htmlparser2/src/__fixtures__/Documents/Attributes.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/htmlparser2/src/__fixtures__/Documents/Svg.html</loc>
 		<priority>0.36</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
@@ -131,12 +131,12 @@
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/@angular-devkit/build-angular/src/tools/webpack/plugins/karma/karma-debug.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/@angular-devkit/build-angular/src/tools/webpack/plugins/karma/karma-context.html</loc>
 		<priority>0.09</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
 	<url>
-		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/@angular-devkit/build-angular/src/tools/webpack/plugins/karma/karma-context.html</loc>
+		<loc>https://www.pcgamesportvideo.netlify.app//node_modules/@angular-devkit/build-angular/src/tools/webpack/plugins/karma/karma-debug.html</loc>
 		<priority>0.09</priority>
 		<lastmod>2025-08-31</lastmod>
 	</url>
