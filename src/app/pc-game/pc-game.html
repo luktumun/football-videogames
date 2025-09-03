@@ -1,29 +1,25 @@
-<!-- pc-game.component.html -->
 
-<!-- Title and loading indicator -->
+
+
+<div class="wrapper" >
+  
 <h2>PC Game List</h2>
 <p *ngIf="!games || games.length === 0">Loading...</p>
-
-<!-- Game list -->
-<div class="game-list" *ngIf="games && games.length > 0">
   <div
-    class="game-card"
+    class="card"
     *ngFor="let game of games; trackBy: trackByGameId"
     role="listitem"
     [attr.data-testid]="'game-card-' + game._id"
   >
-    <div class="card-content">
-      <h2 style="color: #101018;">{{ game.title }}</h2>
+    <div class="card-left">
+      <h2 class="video-title" style="color: #1e90ff;">{{ game.title }}</h2>
 
-      <div class="media-card">
-        <!-- Left: Video or Thumbnail -->
-        <div class="video-wrapper">
-          <!-- Show video player if activeGameId matches -->
+     
           <div *ngIf="activeGameId === game._id">
             <youtube-player
               [videoId]="extractYoutubeId(game.url) ?? undefined"
-              [height]="360"
-              [width]="640"
+              [height]="300"
+              [width]="500"
               class="video-frame"
               (stateChange)="onPlayerStateChange($event, game)"
               [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
@@ -33,28 +29,27 @@
           </div>
 
           <!-- Show thumbnail if not active -->
-          <div *ngIf="activeGameId !== game._id" class="video-preview" (click)="playGameHandler(game)">
+          <div *ngIf="activeGameId !== game._id" class="thumbnail-wrapper" (click)="playGameHandler(game)">
             <img
               [src]="getThumbnail(game)"
               alt="Preview of {{ game.title }}"
-              class="video-frame thumbnail"
+              class="thumbnail"
             />
-            <div class="play-button" aria-hidden="true">▶</div>
+            <div class="play-icon" aria-hidden="true">▶</div>
           </div>
         </div>
 
         <!-- Right: Description and Downloads -->
-        <div class="card-details">
-          <div *ngIf="game.description" class="description">
-            <h3 style="color: #101018">Description:</h3>
+        <div class="card-right">
+          <div *ngIf="game.description" class="video-description">
             <ul>
-              <li style="color: #1e90ff;" *ngFor="let line of getDescriptionLines(game.description)">
+              <li style="color: #2c3e50;" *ngFor="let line of getDescriptionLines(game.description)">
                 {{ line }}
               </li>
             </ul>
           </div>
 
-          <div *ngIf="game.url1" class="downloads">
+          <div *ngIf="game.url1" class="download-link">
             <a
               style="color: #eb2626;"
               [href]="transformDropboxUrl(game.url1)"
@@ -79,6 +74,5 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+   
 </div>

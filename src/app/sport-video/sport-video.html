@@ -1,25 +1,24 @@
-<h2>Sport Video List</h2>
+
+<div class="wrapper">
+  <h2>Sport Video List</h2>
 <p *ngIf="!videos || videos.length === 0">Loading...</p>
 
-<div class="video-list">
   <div
-    class="video-card"
+    class="card"
     *ngFor="let video of videos; trackBy: trackByVideoId"
     role="listitem"
     [attr.data-testid]="'video-card-' + video._id"
   >
-    <div class="card-content">
-      <h2 style="color: #101018;">{{ video.soccermatch }}</h2>
+  <div class="card-left">
+      <h2 class="video.title" style="color: #1e90ff;">{{ video.soccermatch }}</h2>
 
-      <div class="media-card">
-        <!-- Left: Video or Thumbnail -->
-        <div class="video-wrapper">
+    
           <!-- Show video player if activeVideoId matches -->
           <div *ngIf="activeVideoId === video._id">
             <youtube-player
               [videoId]="extractYoutubeId(video.videourl) ?? undefined"
-              [height]="360"
-              [width]="640"
+              [height]="300"
+              [width]="500"
               class="video-frame"
               (stateChange)="onPlayerStateChange($event, video)"
               [playerVars]="{ autoplay: 1, mute: 1, rel: 0 }"
@@ -27,29 +26,29 @@
               [attr.key]="video._id"
             ></youtube-player>
           </div>
+         
         
           <!-- Show thumbnail if not active -->
-          <div *ngIf="activeVideoId !== video._id" class="video-preview" (click)="playVideoHandler(video)">
+          <div *ngIf="activeVideoId !== video._id" class="thumbnail-wrapper" (click)="playVideoHandler(video)">
             <img
               [src]="getThumbnail(video)"
               alt="Preview of {{ video.soccermatch }}"
-              class="video-frame"
+              class="thumbnail"
             />
-            <div class="play-button" aria-hidden="true">▶</div>
+            <div class="play-icon" aria-hidden="true">▶</div>
           </div>
         </div>
         <!-- Right: Description and Downloads -->
-        <div class="card-details">
-          <div *ngIf="video.description" class="description">
-            <h3 style="color: #101018;" >Description:</h3>
+        <div class="card-right">
+          <div *ngIf="video.description" class="video-description">
             <ul>
-              <li style="color: #1e90ff;" *ngFor="let line of getDescriptionLines(video.description)">
+              <li style="color: #2c3e50;" *ngFor="let line of getDescriptionLines(video.description)">
                 {{ line }}
               </li>
             </ul>
           </div>
 
-          <div *ngIf="video.torrentdownloadlink" class="downloads">
+          <div *ngIf="video.torrentdownloadlink" class="download-link1">
             <a style="color: #e34023;"
               [href]="transformDropboxUrl(video.torrentdownloadlink)"
               target="_blank"
@@ -73,5 +72,4 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  
