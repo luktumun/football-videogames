@@ -1,55 +1,76 @@
 /* =============================
-   WRAPPER
-=============================*/
-.wrapper {
-  padding: 25px;
-  max-width: 1250px;
-  margin: auto;
+font-size: 1.45rem;
+font-weight: bold;
+color: #1e90ff;
+margin-bottom: 12px;
+transition: 0.3s;
 }
 
-/* =============================
-   VIDEO CARDS
-=============================*/
-.card {
-  display: flex;
-  flex-direction: row;
-  background: #1a1a1a;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.65);
-}
-
-/* =============================
-   LEFT SIDE: VIDEO OR THUMBNAIL
-=============================*/
-.card-left {
-  flex: 1;
-  max-width: 520px;
-  margin-right: 25px;
-  cursor: pointer;
-}
-
-/* Video Title */
-.video-title {
-  font-size: 1.45rem;
-  font-weight: bold;
-  color: #1e90ff;
-  margin-bottom: 12px;
-  transition: 0.3s;
-}
 
 .video-title:hover {
-  color: #ff5c33;
+color: #ff5c33;
 }
 
-/* Thumbnail Container */
+
 .thumbnail-wrapper {
-  position: relative;
-  border-radius: 16px;
+position: relative;
+border-radius: 16px;
+overflow: hidden;
+animation: fadeIn 0.6s;
+}
+
+
+.thumbnail {
+width: 100%;
+max-height: 320px;
+object-fit: cover;
+border-radius: 16px;
+box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+transition: 0.25s;
+}
+
+
+.thumbnail-wrapper:hover .thumbnail {
+filter: brightness(1.15);
+transform: scale(1.03);
+}
+
+
+.play-icon {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 3.2rem;
+color: white;
+opacity: 0.92;
+text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+transition: 0.3s;
+}
+
+
+.thumbnail-wrapper:hover .play-icon {
+transform: translate(-50%, -50%) scale(1.18);
+color: #1e90ff;
+}
+
+
+.card-right {
+flex: 1;
+padding-left: 10px;
+}
+
+
+.video-description li {
+background: rgba(255,255,255,0.06);
+padding: 10px 14px;
+border-radius: 10px;
+color: #dcdcdc;
+margin-bottom: 8px;
+transition: 0.25s;
+}
+
+
+.video-description li:hover {
+background: rgba(255,255,255,0.1);
+color
