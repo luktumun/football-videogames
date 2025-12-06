@@ -1,60 +1,70 @@
-/* =============================
-APP.CSS — Modern 2025 UI
-=============================*/
+/* ==========================
+   Modern app.css (2025 UI Enhanced)
+   ========================== */
 
-
-.app-container {
-font-family: 'Segoe UI', Arial, sans-serif;
-background: #0f0f10;
-color: #f0f0f0;
-min-height: 100vh;
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Inter", sans-serif;
 }
 
+body {
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+  color: #f1f5f9;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  line-height: 1.6;
+}
 
-/* HEADER */
+/* Layout Wrapper */
+.wrapper {
+  width: 95%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+/* Header */
 .header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-background: #1a1a1d;
-padding: 15px 30px;
-border-bottom: 1px solid rgba(255,255,255,0.07);
-box-shadow: 0 4px 18px rgba(0,0,0,0.45);
-flex-wrap: wrap;
+  text-align: center;
+  padding: 30px 0;
+  font-size: 42px;
+  font-weight: 800;
+  color: #00f5d4;
+  text-shadow: 0px 0px 20px rgba(0, 245, 212, 0.5);
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-
-.logo {
-font-size: 1.7rem;
-font-weight: 700;
-color: #1e90ff;
-display: flex;
-align-items: center;
-gap: 10px;
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #e0fbfc;
+  background: linear-gradient(90deg, #1b263b, #0d1b2a);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-
-.nav-buttons {
-display: flex;
-gap: 18px;
-flex-wrap: wrap;
+/* Buttons */
+.btn {
+  background: #00f5d4;
+  padding: 12px 26px;
+  color: #0d1b2a;
+  border-radius: 12px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
 }
 
-
-.nav-buttons a {
-text-decoration: none;
-color: #e6e6e6;
-padding: 8px 14px;
-border-radius: 8px;
-transition: 0.3s;
-font-weight: 600;
+.btn:hover {
+  background: #06d6a0;
+  box-shadow: 0 0 12px #00f5d4;
+  transform: scale(1.05);
 }
 
-
-.nav-buttons a:hover {
-background: #29292c;
-color: #1e90ff;
-}
-
-
-/* MAIN */
