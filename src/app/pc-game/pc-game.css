@@ -1,166 +1,60 @@
 /* =============================
-   PAGE TITLE
-=============================*/
-h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #1e90ff;
-  text-align: center;
+padding-left: 0;
+list-style: none;
 }
 
-/* =============================
-   GAME CARDS
-=============================*/
-.card {
-  display: flex;
-  flex-direction: row;
-  background: #1a1a1a;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 25px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.4);
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-}
-
-/* Left side: Video / Thumbnail */
-.card-left {
-  flex: 1;
-  margin-right: 20px;
-}
-
-/* Title */
-.video-title {
-  font-size: 1.35rem;
-  margin-bottom: 10px;
-  font-weight: 600;
-}
-
-/* Thumbnail Area */
-.thumbnail-wrapper {
-  position: relative;
-  cursor: pointer;
-}
-
-.thumbnail {
-  width: 100%;
-  max-width: 520px;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
-  transition: 0.3s ease;
-}
-
-.thumbnail-wrapper:hover .thumbnail {
-  filter: brightness(1.15);
-  transform: scale(1.02);
-}
-
-/* Play Icon */
-.play-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  color: white;
-  opacity: 0.9;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.7);
-  transition: 0.3s ease;
-}
-
-.thumbnail-wrapper:hover .play-icon {
-  color: #1e90ff;
-  transform: translate(-50%, -50%) scale(1.2);
-}
-
-/* When video plays */
-.video-frame {
-  border-radius: 14px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-}
-
-/* =============================
-   RIGHT SIDE CONTENT
-=============================*/
-.card-right {
-  flex: 1;
-  padding-left: 15px;
-}
-
-/* Description */
-.video-description ul {
-  list-style: none;
-  padding: 0;
-}
 
 .video-description li {
-  background: rgba(255,255,255,0.05);
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  border-radius: 10px;
-  color: #ddd;
-  border: 1px solid rgba(255,255,255,0.05);
+background: rgba(255,255,255,0.05);
+padding: 10px 14px;
+border-radius: 10px;
+color: #d8d8d8;
+margin-bottom: 8px;
+border: 1px solid rgba(255,255,255,0.05);
+transition: 0.25s;
 }
 
-/* =============================
-   DOWNLOAD LINKS
-=============================*/
+
+.video-description li:hover {
+background: rgba(255,255,255,0.08);
+color: #ffffff;
+}
+
+
 .download-link {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+display: block;
+padding: 10px 14px;
+border-radius: 10px;
+background: #222;
+color: #ff4747;
+font-weight: bold;
+margin: 8px 0;
+text-decoration: none;
+transition: 0.3s;
+box-shadow: 0 4px 12px rgba(0,0,0,0.45);
 }
 
-.download-link a {
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s ease;
-  background: #222;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+.download-link:hover {
+background: #333;
+transform: translateY(-3px);
 }
 
-.download-link a:hover {
-  transform: translateY(-3px);
-  background: #333;
+
+.magnet-link {
+color: #ff7a29 !important;
 }
 
-/* Dropbox Link */
-.download-link a:first-child {
-  color: #ff4747;
+
+@keyframes fadeIn {
+from { opacity: 0; transform: scale(0.97); }
+to { opacity: 1; transform: scale(1); }
 }
 
-/* Magnet Link */
-.download-link a:last-child {
-  color: #ff7b29;
-}
 
-/* =============================
-   MOBILE RESPONSIVE
-=============================*/
 @media (max-width: 900px) {
-  .card {
-    flex-direction: column;
-  }
-
-  .card-left {
-    margin-right: 0;
-  }
-
-  .card-right {
-    padding-left: 0;
-    margin-top: 20px;
-  }
-
-  .thumbnail,
-  youtube-player {
-    width: 100% !important;
-  }
+.card { flex-direction: column; }
+.card-left { margin-right: 0; }
+.card-right { margin-top: 20px; padding-left: 0; }
+.thumbnail { max-height: 260px; }
 }
