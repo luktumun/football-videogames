@@ -1,134 +1,166 @@
-.wrapper {
-  padding: 20px;
+/* =============================
+   PAGE TITLE
+=============================*/
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1e90ff;
+  text-align: center;
 }
 
+/* =============================
+   GAME CARDS
+=============================*/
 .card {
   display: flex;
-  flex-wrap: wrap;
-  border: 1px solid #ccc;
-  margin-bottom: 30px;
-  padding: 15px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  transition: box-shadow 0.3s ease;
+  flex-direction: row;
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
 }
 
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
+/* Left side: Video / Thumbnail */
 .card-left {
-  width: 100%;
-  max-width: 500px;
+  flex: 1;
   margin-right: 20px;
+}
+
+/* Title */
+.video-title {
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Thumbnail Area */
+.thumbnail-wrapper {
+  position: relative;
   cursor: pointer;
 }
 
-.card-right {
-  flex: 1;
-  min-width: 280px;
-  padding-top: 10px;
-}
-
-/* Title styling */
-.video-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1e90ff; /* Dodger Blue */
-  margin-bottom: 10px;
-  transition: color 0.3s ease;
-}
-
-.video-title:hover {
-  color: #ff6347; /* Tomato */
-}
-
-/* Description styling */
-.video-description {
-  font-size: 16px;
-  color: #2c3e50;
-  margin-bottom: 12px;
-  padding-left: 20px;
-  list-style-type: disc;
-}
-
-.video-description li {
-  margin-bottom: 6px;
-  transition: color 0.3s ease;
-}
-
-.video-description li:hover {
-  color: #555;
-}
-
-/* Download link styling */
-.download-link {
-  font-size: 16px;
-  color: #e74c3c;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.download-link:hover {
-  color: #c0392b;
-  text-decoration: underline;
-}
-
-/* Thumbnail wrapper */
-.thumbnail-wrapper {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  animation: fadeIn 0.6s ease-in-out;
-}
-
 .thumbnail {
-  width: 500;
-  height: 300;
-  object-fit: cover;
-  border-radius: 0;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  transition: 0.3s ease;
 }
 
+.thumbnail-wrapper:hover .thumbnail {
+  filter: brightness(1.15);
+  transform: scale(1.02);
+}
+
+/* Play Icon */
 .play-icon {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: 3rem;
   color: white;
-  border-radius: 50%;
-  padding: 12px;
+  opacity: 0.9;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+  transition: 0.3s ease;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+.thumbnail-wrapper:hover .play-icon {
+  color: #1e90ff;
+  transform: translate(-50%, -50%) scale(1.2);
 }
 
-/* Responsive layout */
-@media screen and (max-width: 768px) {
+/* When video plays */
+.video-frame {
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+}
+
+/* =============================
+   RIGHT SIDE CONTENT
+=============================*/
+.card-right {
+  flex: 1;
+  padding-left: 15px;
+}
+
+/* Description */
+.video-description ul {
+  list-style: none;
+  padding: 0;
+}
+
+.video-description li {
+  background: rgba(255,255,255,0.05);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  color: #ddd;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =============================
+   DOWNLOAD LINKS
+=============================*/
+.download-link {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.download-link a {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease;
+  background: #222;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.download-link a:hover {
+  transform: translateY(-3px);
+  background: #333;
+}
+
+/* Dropbox Link */
+.download-link a:first-child {
+  color: #ff4747;
+}
+
+/* Magnet Link */
+.download-link a:last-child {
+  color: #ff7b29;
+}
+
+/* =============================
+   MOBILE RESPONSIVE
+=============================*/
+@media (max-width: 900px) {
   .card {
     flex-direction: column;
-    align-items: center;
   }
 
-  .card-left,
+  .card-left {
+    margin-right: 0;
+  }
+
   .card-right {
-    width: 100%;
-    margin: 0;
+    padding-left: 0;
+    margin-top: 20px;
   }
 
   .thumbnail,
-  iframe {
-    width: 100%;
-    height: auto;
+  youtube-player {
+    width: 100% !important;
   }
 }
